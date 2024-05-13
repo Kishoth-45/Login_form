@@ -18,7 +18,7 @@ body {
     justify-content: center;
     display: flex;
     width: 100%;
-    font-family: "Radio Canada Big", sans-serif;
+    font-family: "Josefin Sans", sans-serif;
 }
 
 .login {
@@ -70,7 +70,15 @@ button {
 
 .btnsumbit button {
     width: 100%;
+    background-color: rgb(42, 7, 73);
+    border: none;
+    border-radius: 7px;
+    font-size: 19px;
     
+}
+.btnsumbit button:hover {
+    background-color: rgb(106, 20, 182);
+
 }
 
 .formcontrol.success input {
@@ -103,6 +111,14 @@ button {
     visibility: visible;
 }
 
+.formcontrol .eye1 {
+    visibility: visible;
+    right: 35px;
+}
+.formcontrol .eye {
+    visibility: visible;
+    right: 10px;
+}
 .formcontrol small {
     color: orangered;
     position: absolute;

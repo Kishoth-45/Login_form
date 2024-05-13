@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="image/logo2.jpg">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -56,6 +57,7 @@
                 <input type="password" name="" id="password">
                 <i class="fa-solid fa-circle-check"></i>
                 <i class="fa-solid fa-circle-exclamation"></i>
+                <i class="fa-solid fa-eye-slash eye" id="showpassword"></i>
                 <small>Error Message</small>
 
             </div>
@@ -64,6 +66,7 @@
                 <input type="password" name="" id="password2">
                 <i class="fa-solid fa-circle-check"></i>
                 <i class="fa-solid fa-circle-exclamation"></i>
+                <i class="fa-solid fa-eye-slash eye" id="hidepassword"></i>
                 <small>Error Message</small>
 
             </div>
@@ -93,11 +96,56 @@
         const password = document.getElementById("password");
         const password2 = document.getElementById("password2");
 
+        const showpassword = document.getElementById("showpassword")
+        const hidepassword = document.getElementById("hidepassword")
+
+        showpassword.addEventListener('click', e => {
+
+            if (password.type === "password") {
+                password.type = "text";
+                showpassword.classList.remove('fa-eye-slash')
+                showpassword.classList.add('fa-eye')
+
+            } else {
+                password.type = "password"
+                showpassword.classList.remove('fa-eye')
+                showpassword.classList.add('fa-eye-slash')
+
+            }
+
+        })
+        hidepassword.addEventListener('click', e => {
+
+            if (password2.type === "password") {
+                password2.type = "text";
+                hidepassword.classList.remove('fa-eye-slash')
+                hidepassword.classList.add('fa-eye')
+
+            } else {
+                password2.type = "password"
+                hidepassword.classList.remove('fa-eye')
+                hidepassword.classList.add('fa-eye-slash')
+
+            }
+        })
+
+
+        form.addEventListener("submit", e => {
+            showpassword.classList.remove('eye')
+            showpassword.classList.add('eye1')
+        });
+        form.addEventListener("submit", e => {
+            hidepassword.classList.remove('eye')
+            hidepassword.classList.add('eye1')
+        });
+
 
         form.addEventListener("submit", e => {
             e.preventDefault();
             checkInput();
         });
+
+       
 
 
 
@@ -126,21 +174,17 @@
                 setError(number, "Phone number can't be blank");
             } else if (!isValidPhoneNumber(numberValue)) {
                 setError(number, "Phone Number is not valid");
-            } 
-            else if (numberValue.length < 10) {
+            } else if (numberValue.length < 10) {
                 setError(number, "Phonenumber must be 10 numbers");
-            }
-            else {
+            } else {
                 setSuccess(number);
             }
 
             if (passwordValue === "") {
                 setError(password, "Password can't be blank");
-            } 
-            else if (passwordValue.length < 6) {
+            } else if (passwordValue.length < 6) {
                 setError(password, "Password must be at least 6 characters");
-            }
-            else {
+            } else {
                 setSuccess(password);
             }
 
@@ -163,6 +207,8 @@
             return /^\d+$/.test(number);
         }
 
+       
+
 
         function setError(input, message) {
             const formControl = input.parentElement;
@@ -176,7 +222,7 @@
             const formControl = input.parentElement;
             const small = formControl.querySelector("small");
             formControl.className = "formcontrol success";
-            small.innerText = "";
+            small.textContent = "";
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
